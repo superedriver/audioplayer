@@ -1,0 +1,29 @@
+{
+  "scripts": {
+    "prod": "cross-env NODE_ENV=production ts-node build.ts",
+    "dev": "ts-node build.ts"
+  },
+  "dependencies": {
+    "@types/browser-sync": "^0.0.41",
+    "@types/fs-extra": "^5.0.4",
+    "@types/html-webpack-plugin": "^3.2.0",
+    "@types/node": "^10.9.4",
+    "@types/webpack": "^4.4.11",
+    "browser-sync": "^2.24.7",
+    "cross-env": "^5.2.0",
+    "file-loader": "^2.0.0",
+    "fs-extra": "^7.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "ts-loader": "^5.1.0",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.0.3",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.18.0"
+  },
+  "devDependencies": {
+    "css-loader": "^1.0.1",
+    "style-loader": "^0.23.1"
+  }
+}

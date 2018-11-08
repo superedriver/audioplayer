@@ -1,0 +1,101 @@
+.audio-player
+  height 300px
+  width 673px
+  background url("../img/background.png")
+  display flex
+  justify-content center
+  align-items center
+  position relative
+
+.icon
+  color #d0d0d0
+  cursor pointer
+  font-size 16px
+
+.player-logo
+  position absolute
+  top calc(50% - 75px)
+  left calc(50% - 75px)
+  overflow hidden
+  height 150px
+  width 150px
+  border-radius 50%
+  background url("../img/controls-background.png") 50% 50% no-repeat
+  display flex
+  align-items center
+
+.logo-panel
+  height 36px
+  width 100%
+  box-shadow 0 2px 2px 0 #000000
+  background-image linear-gradient(to bottom, rgba(42, 42, 42, 0.95), rgba(4, 4, 4, 0.95))
+
+.track-name
+  color #d0d0d0
+  position absolute
+  bottom 0
+  font-family Arial
+  font-size 13px
+  width 100%
+  padding-bottom 32px
+  display flex
+  justify-content center
+
+.audio-controls
+  position relative
+  display flex
+  justify-content space-between
+  width 295px
+  align-items center
+
+.song-controls
+  display flex
+  justify-content space-between
+  width 100px
+
+.volume-control-wrapper {
+  position relative
+
+  .icon {
+    font-size: 20px;
+  }
+
+  .volume-control {
+    position absolute
+    transform rotate(-90deg)
+    width 100px
+    left -5px
+    bottom -2px
+
+    &.hidden {
+      display none
+    }
+  }
+}
+
+.tooltip {
+  position absolute
+  padding 4px 10px
+  background-image linear-gradient(to bottom, rgba(234, 234, 234, 0.95), rgba(189, 189, 189, 0.95))
+  font-size 12px
+  color #3b3b3b
+  border-radius 3px
+  font-family Arial, sans-serif
+  text-shadow 0 1px 0 #f2f2f2
+  border-top 1px solid #ffffff
+  top -28px
+  left -162%
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: calc(50% - 4px);
+    bottom: -6px;
+    border: 3px solid transparent;
+    border-top: 3px solid #bbbbbb;
+  }
+}
+
+.favorite-wrapper {
+  position relative
+}
