@@ -2,6 +2,7 @@ import { PlayControl } from './PlayControl'
 import { VolumeControl } from './VolumeControl'
 import { Playlist } from './Playlist'
 import { Favorite } from './FavoriteBtn'
+import { ProgressBar } from './ProgressBar'
 import { INITIAL_VOLUME_VALUE } from './constants'
 
 export class AudioPlayer {
@@ -14,6 +15,7 @@ export class AudioPlayer {
   public volumeControl: VolumeControl
   public playControlBtn: PlayControl
   public playlist: Playlist
+  public progressBar: ProgressBar
 
   constructor(public $root: HTMLElement) {
     this.$elem.classList.add('audio-player')
@@ -21,6 +23,8 @@ export class AudioPlayer {
     let logo = document.createElement('div')
     logo.classList.add('player-logo')
     this.$elem.appendChild(logo)
+
+    this.progressBar = new ProgressBar(this.$elem)
 
     let panel = document.createElement('div')
     panel.classList.add('logo-panel')
@@ -56,9 +60,14 @@ export class AudioPlayer {
 
     this.$root.appendChild(this.$elem)
 
-    this.$audio.addEventListener('ended', this.playNext.bind(this))
     this.$nextBtn.addEventListener('click', this.playNext.bind(this))
     this.$previousBtn.addEventListener('click', this.playPrevious.bind(this))
+    this.$audio.addEventListener('ended', this.playNext.bind(this))
+    this.$audio.addEventListener('timeupdate', () => {
+      const value = this.$audio.currentTime/this.$audio.duration || 0
+
+      this.progressBar.setProgressValue(value)
+    })
   }
 
   public reloadTrack() {

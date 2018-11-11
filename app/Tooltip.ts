@@ -3,7 +3,7 @@ export class Tooltip {
 
   constructor(public $root: HTMLElement, initialText: string) {
     this.$tooltip.classList.add('tooltip')
-    this.$tooltip.innerHTML = initialText || '87%'
+    this.$tooltip.innerHTML = initialText
 
     this.$root.appendChild(this.$tooltip)
   }
