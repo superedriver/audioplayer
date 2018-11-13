@@ -1,3 +1,5 @@
+import { bootstrap } from './helpers'
+
 const PLAY_CLASS_NAME: string = 'fa-play';
 const PAYSE_CLASS_NAME: string = 'fa-pause';
 
@@ -6,7 +8,7 @@ export class PlayControl {
 
   constructor(public $root: HTMLElement, onTogglePlayCallback: any) {
     this.$icon.classList.add('play-control', 'icon', 'fas', PLAY_CLASS_NAME)
-    this.$root.appendChild(this.$icon)
+    bootstrap(this.$root, this.$icon)
 
     this.$icon.addEventListener('click', () => {
       onTogglePlayCallback()

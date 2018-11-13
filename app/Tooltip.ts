@@ -1,3 +1,5 @@
+import { bootstrap } from "./helpers"
+
 export class Tooltip {
   public $tooltip = document.createElement('div')
 
@@ -5,7 +7,7 @@ export class Tooltip {
     this.$tooltip.classList.add('tooltip')
     this.$tooltip.innerHTML = initialText
 
-    this.$root.appendChild(this.$tooltip)
+    bootstrap(this.$root, this.$tooltip)
   }
 
   public changeLabelText(labelText: string) {

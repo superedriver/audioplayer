@@ -1,5 +1,5 @@
 let PB = require('progressbar.js')
-// import PB from 'progressbar.js/dist/progressbar'
+import { bootstrap } from './helpers'
 
 export class ProgressBar {
   public $elem = document.createElement('div')
@@ -8,7 +8,7 @@ export class ProgressBar {
   constructor(public $root: HTMLElement) {
     this.$elem.id = 'progress-bar'
     this.$elem.classList.add('progress-bar')
-    this.$root.appendChild(this.$elem)
+    bootstrap(this.$root, this.$elem)
 
     this.circle = new PB.Circle(this.$elem, {
       color: '#0078c8',
