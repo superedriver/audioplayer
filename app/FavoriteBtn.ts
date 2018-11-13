@@ -1,4 +1,5 @@
 import { Tooltip } from './Tooltip'
+import { bootstrap } from './helpers'
 
 export class Favorite {
   public $elem: HTMLElement = document.createElement('span')
@@ -10,7 +11,7 @@ export class Favorite {
     this.$icon.classList.add('icon', 'fas', 'fa-heart')
     this.tooltip = new Tooltip(this.$elem, 'Favorited')
 
-    this.$elem.appendChild(this.$icon)
-    this.$root.appendChild(this.$elem)
+    bootstrap(this.$elem, this.$icon)
+    bootstrap(this.$root, this.$elem)
   }
 }

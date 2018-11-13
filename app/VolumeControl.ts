@@ -1,5 +1,6 @@
 import { INITIAL_VOLUME_VALUE } from './constants'
 import { Tooltip } from './Tooltip'
+import { bootstrap } from "./helpers"
 
 // additional code
 const convertTooltipText = (value: number): string => {
@@ -22,12 +23,10 @@ export class VolumeControl {
     this.$volumeControl.max = '1'
     this.$volumeControl.step = '0.01'
     this.$volumeControl.value = `${INITIAL_VOLUME_VALUE}`
-    this.$volumeControl.classList.add('volume-control')
-    this.$volumeControl.classList.add('hidden')
+    this.$volumeControl.classList.add('volume-control', 'hidden')
 
-    this.$elem.appendChild(this.$icon)
-    this.$elem.appendChild(this.$volumeControl)
-    this.$root.appendChild(this.$elem)
+    bootstrap(this.$elem, this.$icon, this.$volumeControl)
+    bootstrap(this.$root, this.$elem)
 
     this.$volumeControl.addEventListener('change', (e: any) => {
       const volumeValue: string = e.target.value

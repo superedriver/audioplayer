@@ -1,7 +1,14 @@
+// classs import
 import { PlayControl } from './PlayControl'
 import { VolumeControl } from './VolumeControl'
 import { Playlist } from './Playlist'
 import { Favorite } from './FavoriteBtn'
+import { ProgressBar } from './ProgressBar'
+
+// import from helpers
+import { bootstrap } from "./helpers"
+
+// import from constants
 import { INITIAL_VOLUME_VALUE } from './constants'
 
 export class AudioPlayer {
@@ -14,20 +21,23 @@ export class AudioPlayer {
   public volumeControl: VolumeControl
   public playControlBtn: PlayControl
   public playlist: Playlist
+  public progressBar: ProgressBar
 
   constructor(public $root: HTMLElement) {
     this.$elem.classList.add('audio-player')
 
     let logo = document.createElement('div')
     logo.classList.add('player-logo')
-    this.$elem.appendChild(logo)
+    bootstrap(this.$elem, logo)
+
+    this.progressBar = new ProgressBar(this.$elem)
 
     let panel = document.createElement('div')
     panel.classList.add('logo-panel')
-    logo.appendChild(panel)
+    bootstrap(logo, panel)
 
     this.$trackName.classList.add('track-name')
-    this.$elem.appendChild(this.$trackName)
+    bootstrap(this.$elem, this.$trackName)
 
     this.$nextBtn.classList.add('icon', 'next-btn', 'fas', 'fa-fast-forward')
     this.$previousBtn.classList.add('icon', 'previous-btn', 'fas', 'fa-fast-backward')
@@ -36,29 +46,32 @@ export class AudioPlayer {
     let songControls = document.createElement('span')
     songControls.classList.add('song-controls')
     this.playControlBtn = new PlayControl(songControls, this.togglePlay.bind(this))
-    songControls.appendChild(this.$previousBtn)
-    songControls.appendChild(this.$nextBtn)
+    bootstrap(songControls, this.$previousBtn, this.$nextBtn)
 
     let allControls = document.createElement('div')
     allControls.classList.add('audio-controls')
 
     this.favoriteBtn = new Favorite(allControls)
 
-    allControls.appendChild(songControls)
+    bootstrap(allControls, songControls)
     this.volumeControl = new VolumeControl(allControls, this.handleVolumeChange.bind(this))
-    this.$elem.appendChild(allControls)
+    bootstrap(this.$elem, allControls)
 
     this.playlist = new Playlist();
     this.$audio.volume = INITIAL_VOLUME_VALUE
     this.$audio.src = this.playlist.currentTrack.src
     this.$trackName.innerHTML = this.playlist.currentTrack.title
-    this.$root.appendChild(this.$audio)
 
-    this.$root.appendChild(this.$elem)
+    bootstrap(this.$root, this.$audio, this.$elem)
 
-    this.$audio.addEventListener('ended', this.playNext.bind(this))
     this.$nextBtn.addEventListener('click', this.playNext.bind(this))
     this.$previousBtn.addEventListener('click', this.playPrevious.bind(this))
+    this.$audio.addEventListener('ended', this.playNext.bind(this))
+    this.$audio.addEventListener('timeupdate', () => {
+      const value = this.$audio.currentTime/this.$audio.duration || 0
+
+      this.progressBar.setProgressValue(value)
+    })
   }
 
   public reloadTrack() {

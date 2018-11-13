@@ -1,12 +1,14 @@
-const playClassName: string = 'fa-play';
-const pauseClassName: string = 'fa-pause';
+import { bootstrap } from './helpers'
+
+const PLAY_CLASS_NAME: string = 'fa-play';
+const PAYSE_CLASS_NAME: string = 'fa-pause';
 
 export class PlayControl {
   public $icon = document.createElement('i')
 
   constructor(public $root: HTMLElement, onTogglePlayCallback: any) {
-    this.$icon.classList.add('play-control', 'icon', 'fas', playClassName)
-    this.$root.appendChild(this.$icon)
+    this.$icon.classList.add('play-control', 'icon', 'fas', PLAY_CLASS_NAME)
+    bootstrap(this.$root, this.$icon)
 
     this.$icon.addEventListener('click', () => {
       onTogglePlayCallback()
@@ -18,12 +20,12 @@ export class PlayControl {
   }
 
   public setPauseIcon() {
-    this.$icon.classList.remove(playClassName)
-    this.$icon.classList.add(pauseClassName)
+    this.$icon.classList.remove(PLAY_CLASS_NAME)
+    this.$icon.classList.add(PAYSE_CLASS_NAME)
   }
 
   public setPlayIcon() {
-    this.$icon.classList.remove(pauseClassName)
-    this.$icon.classList.add(playClassName)
+    this.$icon.classList.remove(PAYSE_CLASS_NAME)
+    this.$icon.classList.add(PLAY_CLASS_NAME)
   }
 }
