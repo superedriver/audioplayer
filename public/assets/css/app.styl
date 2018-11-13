@@ -53,27 +53,23 @@
   justify-content space-between
   width 100px
 
-.volume-control-wrapper {
+.volume-control-wrapper
   position relative
 
-  .icon {
-    font-size: 20px;
-  }
+  .icon
+    font-size 20px
 
-  .volume-control {
+  .volume-control
     position absolute
     transform rotate(-90deg)
     width 100px
     left -5px
     bottom -2px
 
-    &.hidden {
+    &.hidden
       display none
-    }
-  }
-}
 
-.tooltip {
+.tooltip
   position absolute
   padding 4px 10px
   background-image linear-gradient(to bottom, rgba(234, 234, 234, 0.95), rgba(189, 189, 189, 0.95))
@@ -86,16 +82,18 @@
   top -28px
   left -162%
 
-  &::after {
-    content: '';
-    position: absolute;
-    left: calc(50% - 4px);
-    bottom: -6px;
-    border: 3px solid transparent;
-    border-top: 3px solid #bbbbbb;
-  }
-}
+  &::after
+    content ''
+    position absolute
+    left calc(50% - 4px)
+    bottom -6px
+    border 3px solid transparent
+    border-top 3px solid #bbbbbb
 
-.favorite-wrapper {
+.favorite-wrapper
   position relative
-}
+
+.progress-bar
+  width 162px
+  height 162px
+  position absolute
